@@ -1,0 +1,63 @@
+.list th,
+.list td,
+.list tr {
+  border: 1px solid gray;
+}
+
+.social {
+  width: 85%;
+  margin-bottom: 10px;
+}
+.social-top .little tr {
+  border: 0;
+  background-color: #73acd8;
+  margin-top: 20px;
+}
+.social-top .little .little-list td {
+  border: 1px solid #eee;
+  padding: 5px 8.5px;
+  color: #fff;
+  text-align: center;
+  /* width: 140px;
+  min-height: 32px; */
+}
+.social-top .example {
+  text-align: center;
+}
+.aaa {
+  text-align: center;
+}
+.social-top {
+  margin-top: 20px;
+}
+.social-top .tbody .abody {
+  border: 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.social-top .tbody .abody td {
+  padding: 5px 9px;
+  color: rgba(0, 0, 0, 0.85);
+  text-align: center;
+}
+.social-top .tbody .abody td span {
+  width: 108px;
+  min-height: 32px;
+  line-height: 32px;
+  display: inline-block;
+  overflow: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+.qiye-bottom {
+  text-align: right;
+  margin-top: 20px;
+  margin-right: 90px;
+}
+.ant-layout-content {
+  width: calc(100vw - 190px);
+  /* min-height: 100vh; */
+}
+td {
+  border: 1px solid #ccc;
+}

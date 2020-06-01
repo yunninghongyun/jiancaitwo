@@ -1,0 +1,346 @@
+.login {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  top: 0;
+  /* position: relative; */
+  background-image: url(../image/beijing.png);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.login-inner {
+  width: 100%;
+  height: 100vh;
+  background-color: #4c4c4c;
+  opacity: 0.5;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.login .top-img {
+  margin: 180px auto 0;
+}
+.login .top-img img {
+  width: 130px;
+  height: 130px;
+  opacity: 0.8;
+  margin-left: -18px;
+}
+.login-box {
+  width: 24%;
+  background-color: rgba(211, 211, 211, 0.2);
+  margin: 0 auto;
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  margin-left: -12%;
+  border-radius: 5px;
+  /* box-shadow: 0 10px 22px #53749b; */
+  border: 1px solid #eee;
+}
+.login-box .box-top {
+  text-align: center;
+  padding: 0 60px;
+}
+.box-main {
+  margin: 0 auto;
+  text-align: center;
+  padding: 30px 0;
+}
+.box-main div {
+  margin: 30px 0;
+}
+.box-main .userName {
+  display: flex;
+  justify-content: center;
+  opacity: 0.6;
+}
+.box-main .userName span input {
+  text-align: center;
+  background-color: #f4f4f4;
+  font-size: 16px;
+  color: black;
+}
+.box-main .password span input {
+  text-align: center;
+  background-color: #f4f4f4;
+  font-size: 16px;
+  color: #000;
+}
+.box-main .password {
+  display: flex;
+  justify-content: center;
+  opacity: 0.6;
+  color: #fff;
+}
+.box-main .btn .el-button--primary,
+.el-button + .el-button {
+  width: 90px;
+}
+.password .el-input--suffix .el-input__inner {
+  padding-right: 16px;
+  width: 100%;
+}
+.login-btn {
+  width: 90%;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 10px;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  color: #000;
+  font-size: 20px;
+  /* font-weight: bold; */
+}
+.top-img {
+  width: 100px;
+  height: 100px;
+}
+.top-img img {
+  width: 100%;
+  height: 100%;
+}
+
+h2 {
+  margin-left: 200px;
+  color: white !important;
+  text-align: center;
+}
+/* section {
+  height: 533px;
+} */
+.panel4 {
+  padding: 30px 20px 30px;
+  border-radius: 8px;
+  width: 300px;
+  background-color: #3e71cc;
+  position: absolute;
+  top: 160px;
+  right: 80px;
+}
+.panel3 {
+  padding: 30px 20px 30px;
+  border-radius: 8px;
+  width: 300px;
+  background-color: #3e71cc;
+  position: absolute;
+  top: 160px;
+  right: 400px;
+}
+.panel2 {
+  padding: 30px 20px 30px;
+  border-radius: 8px;
+  width: 300px;
+  background-color: #3e71cc;
+  position: absolute;
+  top: 160px;
+  left: 400px;
+}
+.panel1 {
+  padding: 30px 20px 30px;
+  border-radius: 8px;
+  width: 300px;
+  background-color: #3e71cc;
+  position: absolute;
+  top: 160px;
+  left: 80px;
+}
+.copyRight {
+  margin-top: 120px;
+  text-align: center;
+}
+.zhuceform {
+  width: 50%;
+  display: flex;
+  /* height: calc(100vh - 110px); */
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+  background: #fff;
+  box-shadow: 0 0 5px #1790ff;
+  margin-top: 10px;
+}
+.register_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form_title {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  /* font-weight: 600; */
+}
+.form_content {
+  display: flex;
+  font-size: 0.9rem;
+  width: 100%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.form_item {
+  width: 50%;
+  display: flex;
+  margin-bottom: 10px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  /* border: 1px solid red; */
+}
+
+.form_item > span {
+  display: block;
+  width: 200px;
+  text-align: justify;
+  text-align-last: justify;
+  margin-left: 5px;
+  /* font-weight: 600; */
+}
+.form_item .kuang {
+  margin-left: 10px;
+  width: 100%;
+  margin-right: 10px;
+  /* outline: 0; */
+  height: 30px;
+  border: 1px solid silver;
+  padding: 5px;
+  border-radius: 5px;
+  /* border: 1px solid silver; */
+  display: flex;
+  justify-content: space-between;
+}
+.form_item .kuang > input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  height: 20px;
+  margin: 0;
+  display: block;
+}
+.form_item .kuang > span {
+  display: block;
+  width: 20px;
+}
+.form_item input,
+.radio_container,
+textarea {
+  margin-left: 10px;
+  width: 100%;
+  margin-right: 10px;
+  outline: none;
+  height: 30px;
+  border: 1px solid silver;
+  padding: 5px;
+  border-radius: 5px;
+}
+.radio_container {
+  border: none;
+}
+.form_item input[type="radio"] {
+  width: 15px;
+  height: 15px;
+}
+/* .form_item input:focus,
+textarea:focus {
+  border: 1px solid orange;
+} */
+.img_list {
+  padding: 80px;
+  width: 100%;
+  height: calc(100vh - 250px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.img_list span {
+  text-align: center;
+  width: 100%;
+  align-items: center;
+  font-size: 2em;
+  /* font-weight: 600; */
+}
+.img_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 20%;
+  height: 80%;
+  cursor: pointer;
+}
+.zhuce_memo {
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 5px;
+  line-height: 1.3rem;
+  letter-spacing: 0.1rem;
+  text-indent: 2em;
+  width: 100%;
+}
+.btn_box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.btn_container {
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+}
+.arrow_right {
+  color: red;
+  /* width:0px; 
+    height:0px;
+    border:7px solid red;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent; */
+}
+
+.zhaopin_memo {
+  border: 1px solid rgb(192, 192, 192);
+  border-radius: 5px;
+  padding: 10px;
+  line-height: 1.3rem;
+  letter-spacing: 0.1rem;
+  text-indent: 2em;
+  width: 100%;
+  height: 100px;
+}
+.xiaoqi_select {
+  margin-left: 10px;
+  width: 100%;
+  margin-right: 10px;
+  outline: 0;
+  height: 30px;
+  border: 1px solid silver;
+  padding: 5px;
+  border-radius: 5px;
+}
+.xiaoqi_date {
+  width: 100%;
+  margin-right: 10px;
+}
+.radio_container input {
+  cursor: pointer;
+}
+.canyanren td input {
+  border: 0;
+  outline: none;
+  text-align: center;
+}
+.ichoice-change {
+  border: 0;
+  outline: none;
+  text-align: center;
+}
