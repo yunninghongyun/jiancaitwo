@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
-import { Table, Divider, Button, Modal, Input } from 'antd'
-import './socialservices.css'
-// import { log } from 'util'
+import './login.css'
+import { Input, Button, DatePicker, Alert, Select } from 'antd'
+import locale from 'antd/es/date-picker/locale/zh_CN'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
 import Axios from 'axios'
+import '../SocialServices/socialservices.css'
 let url = window.api
-class SocialServices extends Component {
-  constructor() {
-    super()
+class Lixiang extends Component {
+  constructor(props) {
+    super(props)
     this.state = {
       categorynum: [],
       personnels: [],
       peopleNum: 0,
       number1: 99,
       userId: 0,
-      id: 1,
+      id: 0,
       data: [],
       projectName: '',
       serviceCategory: '',
@@ -45,6 +48,7 @@ class SocialServices extends Component {
   componentDidMount() {
     let id = sessionStorage.getItem('ApplicationFormId')
     console.log(id)
+
     if (id && id > 0) {
       Axios.get(`${url}/ApplicationForm/get?id=${id}`)
         .then((res) => {
@@ -79,7 +83,6 @@ class SocialServices extends Component {
         .catch((err) => console.log(err))
     }
   }
-
   submit = () => {
     // if (
     //   this.state.name == "" ||
@@ -107,10 +110,11 @@ class SocialServices extends Component {
     // ) {
     //   alert("必填项不能为空！");
     // } else {
-    
+    // }
+
     let data = {
       id: this.state.id,
-      userId: this.state.userId,
+      category: this.state.category,
       projectName: this.state.projectName,
       serviceCategory: this.state.serviceCategory,
       unitName: this.state.unitName,
@@ -125,14 +129,12 @@ class SocialServices extends Component {
       departmentOpinion: this.state.departmentOpinion,
       departmentSign: this.state.departmentSign,
       unitYear: this.state.unitYear,
-      unitMonth:this.state.unitMonth,
-      unitDay:this.state.unitDay,
-      personSign:this.state.personSign,
-      departmentYear:this.state.departmentYear,
-      departmentMonth:this.state.departmentMonth,
-      commitmentId:this.state.commitmentId,
-      departmentDay:this.state.departmentDay
-      
+      unitMonth: this.state.unitMonth,
+      unitDay: this.state.unitDay,
+      personSign: this.state.personSign,
+      departmentYear: this.state.departmentYear,
+      departmentMonth: this.state.departmentMonth,
+      departmentDay: this.state.departmentDay,
     }
     console.log(data)
     if (this.state.id > 0) {
@@ -142,7 +144,7 @@ class SocialServices extends Component {
           if (res.data && res.data.id > 0) {
             alert('修改成功！')
             sessionStorage.setItem('ApplicationFormId', 0)
-            this.props.link('SocialServices')
+            this.props.link('SociaServices')
           }
         })
         .catch((err) => console.log(err))
@@ -152,34 +154,52 @@ class SocialServices extends Component {
           console.log(res.data)
           if (res.data && res.data.id && res.data.id > 0) {
             alert('提交成功！')
-            this.props.link('SocialServices')
+            this.props.link('ApplicationForm')
           } else {
             alert('提交失败')
           }
         })
         .catch((err) => console.log(err))
     }
-
-    // }
   }
   cancel = () => {
-    this.props.link('ProjectList')
+    this.props.link('SocialServices')
   }
-  handleClick = () => {
-  }
-  handleAdd = () => {
-  }
-  handleChange = () => {
-  }
-  handleCommitment = () => {
+  handleChange = (value) => {
+    // let c = []
+    // if (value > this.state.personnels.length) {
+    //   for (let i = 0; i < value - this.state.personnels.length; i++) {
+    //     c.push(
+    //       <tr>
+    //         <td>
+    //           <input type="text" />
+    //         </td>
+    //         <td>
+    //           <input type="text" />
+    //         </td>
+    //         <td>
+    //           <input type="text" />
+    //         </td>
+    //       </tr>
+    //     )
+    //   }
+    // }
+    // this.setState({
+    //   categorynum: c,
+    // })
   }
   render() {
+    const dateFormat = 'YYYY-MM-DD'
+    // let sel = []
+    // for (let i = 1; i < this.state.number1; i++) {
+    //   sel.push(<Select.Option value={i}>{i}</Select.Option>)
+    // }
     return (
-      <div className="register_container">
+      <div>
+        <div className="register_container">
           <div className="zhuceform">
-
-          <div className="form_title">服务社会项目申请表</div>
-        <div className="form_content socialServices">
+            <div className="form_title">服务社会项目申请表</div>
+            <div className="form_content socialServices">
               <table>
                 <tbody>
                   <tr className="top">
@@ -276,9 +296,9 @@ class SocialServices extends Component {
                     <td colSpan="4">
                       <input
                         type="text"
-                        value={this.state.projectParticipants}
+                        value={this.state.projectLeader}
                         onChange={(e) =>
-                          this.setState({ projectParticipants: e.target.value })
+                          this.setState({ projectLeader: e.target.value })
                         }
                       />
                     </td>
@@ -297,7 +317,7 @@ class SocialServices extends Component {
 
                   <tr className="down">
                     <td colSpan="3">
-                      <div className='title'>项目负责人所在单位（部门）意见：</div>
+                      <div>项目负责人所在单位（部门）意见：</div>
                       <div>
                         <textarea
                           value={this.state.unitOpinion}
@@ -306,7 +326,7 @@ class SocialServices extends Component {
                           }
                         ></textarea>
                       </div>
-                      <div className='qianzhang'> 
+                      <div>
                         部门领导（签章）
                         <input
                           type="text"
@@ -345,7 +365,7 @@ class SocialServices extends Component {
                       </div>
                     </td>
                     <td colSpan="2">
-                      <div className='title'>产学研合作部门意见：</div>
+                      <div>产学研合作部门意见：</div>
                       <div>
                         <textarea
                           value={this.state.departmentOpinion}
@@ -354,7 +374,7 @@ class SocialServices extends Component {
                           }
                         ></textarea>
                       </div>
-                      <div className='qianzhang'>
+                      <div>
                         负责人（签章）
                         <input
                           type="text"
@@ -425,10 +445,11 @@ class SocialServices extends Component {
                 </div>
               </div>
             </div>
-            </div>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-export default SocialServices
+export default Lixiang

@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import "./login.css";
-import { DatePicker, Button, Select } from "antd";
-import moment from "moment";
-import "moment/locale/zh-cn";
-import Axios from "axios";
-let url = window.api;
-class Zhuanli extends Component {
+import React, { Component } from 'react'
+import './login.css'
+import { DatePicker, Button, Select } from 'antd'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+import Axios from 'axios'
+let url = window.api
+class Jiangli extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       categorynum: [],
       personnels: [],
@@ -15,31 +15,31 @@ class Zhuanli extends Component {
       number1: 99,
       userId: 0,
       id: 0,
-      awardName: "",
-      resultName: "",
-      approvalUnits: "",
+      awardName: '',
+      resultName: '',
+      approvalUnits: '',
       awardTime: new Date(),
-      prize: "",
-      awardLv: "特等奖",
-      ranking: "",
-      department: "材料工程系",
-      upload: "",
+      prize: '',
+      awardLv: '特等奖',
+      ranking: '',
+      department: '材料工程系',
+      upload: '',
 
-      createTime: "",
-      creator: "",
+      createTime: '',
+      creator: '',
       deleted: true,
-      updateTime: "",
-      updater: "",
-    };
+      updateTime: '',
+      updater: '',
+    }
   }
   componentDidMount() {
-    let id = sessionStorage.getItem("AwardsRegId");
-    console.log(id);
+    let id = sessionStorage.getItem('AwardsRegId')
+    console.log(id)
 
     if (id && id > 0) {
       Axios.get(`${url}/AwardsReg/get?id=${id}`)
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data)
           if (res.data && res.data.id) {
             this.setState({
               id: res.data.id,
@@ -49,7 +49,7 @@ class Zhuanli extends Component {
               awardTime:
                 res.data.awardTime != null && res.data.awardTime.length > 10
                   ? res.data.awardTime.substring(0, 10)
-                  : "2020-01-01",
+                  : '2020-01-01',
               prize: res.data.prize,
               awardLv: res.data.awardLv,
               ranking: res.data.ranking,
@@ -57,10 +57,10 @@ class Zhuanli extends Component {
               department: res.data.department,
               peopleNum: res.data.personnels.length,
               personnels: res.data.personnels,
-            });
+            })
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     }
   }
   submit = () => {
@@ -90,10 +90,10 @@ class Zhuanli extends Component {
     // ) {
     //   alert("必填项不能为空！");
     // } else {
-    let personnels = [];
-    let choice = false;
-    let cou = document.querySelectorAll("input");
-    console.log(cou.length);
+    let personnels = []
+    let choice = false
+    let cou = document.querySelectorAll('input')
+    console.log(cou.length)
     for (let i = 0; i < cou.length; i++) {
       // if (cou[i].value == null || cou[i].value == "") {
       if (i > 6 && (i - 6) % 3 == 1) {
@@ -101,11 +101,11 @@ class Zhuanli extends Component {
           num: cou[i].value, //排名
           name: cou[i + 1].value, //名字
           department: cou[i + 2].value, //部门
-        };
-        if (data.num != "" && data.name != "" && data.department != "") {
-          personnels.push(data);
         }
-        console.log(personnels);
+        if (data.num != '' && data.name != '' && data.department != '') {
+          personnels.push(data)
+        }
+        console.log(personnels)
         // }
       }
     }
@@ -121,40 +121,40 @@ class Zhuanli extends Component {
       upload: this.state.upload,
       department: this.state.department,
       personnels: personnels,
-    };
-    console.log(data);
+    }
+    console.log(data)
     if (this.state.id > 0) {
       Axios.post(`${url}/AwardsReg/update`, data)
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data)
           if (res.data && res.data.id > 0) {
-            alert("修改成功！");
-            sessionStorage.setItem("AwardsRegId", 0);
-            this.props.link("Incentive");
+            alert('修改成功！')
+            sessionStorage.setItem('AwardsRegId', 0)
+            this.props.link('Incentive')
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     } else {
       Axios.post(`${url}/AwardsReg/add`, data)
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data)
           if (res.data && res.data.id && res.data.id > 0) {
-            alert("提交成功！");
-            this.props.link("Incentive");
+            alert('提交成功！')
+            this.props.link('Incentive')
           } else {
-            alert("提交失败");
+            alert('提交失败')
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     }
 
     // }
-  };
+  }
   cancel = () => {
-    this.props.link("Incentive");
-  };
+    this.props.link('Incentive')
+  }
   handleChange = (value) => {
-    let c = [];
+    let c = []
     if (value > this.state.personnels.length) {
       for (let i = 0; i < value - this.state.personnels.length; i++) {
         c.push(
@@ -169,17 +169,17 @@ class Zhuanli extends Component {
               <input type="text" />
             </td>
           </tr>
-        );
+        )
       }
     }
     this.setState({
       categorynum: c,
-    });
-  };
+    })
+  }
   render() {
-    let sel = [];
+    let sel = []
     for (let i = 1; i < this.state.number1; i++) {
-      sel.push(<Select.Option value={i}>{i}</Select.Option>);
+      sel.push(<Select.Option value={i}>{i}</Select.Option>)
     }
     return (
       <div>
@@ -222,11 +222,11 @@ class Zhuanli extends Component {
                 <div className="arrow_right">*</div>
                 <span>获奖时间</span>:
                 <DatePicker
-                  style={{ width: "99%", marginLeft: 0, marginRight: "18px" }}
+                  style={{ width: '99%', marginLeft: 0, marginRight: '18px' }}
                   placeholder="请选择日期"
                   value={moment(this.state.awardTime)}
                   onChange={(e) => {
-                    this.setState({ awardTime: e.format("YYYY-MM-DD") });
+                    this.setState({ awardTime: e.format('YYYY-MM-DD') })
                   }}
                 />
               </div>
@@ -258,7 +258,7 @@ class Zhuanli extends Component {
                 <span>排名人数:</span>
                 <Select
                   showSearch
-                  style={{ width: "100%", margin: "4px 12px 0 12px" }}
+                  style={{ width: '100%', margin: '4px 12px 0 12px' }}
                   placeholder="排名人数"
                   optionFilterProp="children"
                   className="numoftype"
@@ -307,21 +307,21 @@ class Zhuanli extends Component {
                 <div className="btn_container">
                   <Button
                     style={{
-                      width: "60px",
-                      height: "30px",
-                      backgroundColor: "#1890ff",
-                      color: "#fff",
+                      width: '60px',
+                      height: '30px',
+                      backgroundColor: '#1890ff',
+                      color: '#fff',
                     }}
                     onClick={this.submit.bind(this)}
                   >
-                    {this.state.id == 0 ? "提交" : "修改"}
+                    {this.state.id == 0 ? '提交' : '修改'}
                   </Button>
                   <Button
                     style={{
-                      width: "60px",
-                      height: "30px",
-                      color: "#fff",
-                      backgroundColor: "#000",
+                      width: '60px',
+                      height: '30px',
+                      color: '#fff',
+                      backgroundColor: '#000',
                     }}
                     onClick={this.cancel.bind(this)}
                   >
@@ -329,17 +329,17 @@ class Zhuanli extends Component {
                   </Button>
                 </div>
               </div>
-              <div className="xia" style={{ margin: "10px auto" }}>
+              <div className="xia" style={{ margin: '10px auto' }}>
                 <table
                   border="1"
                   className="tbody"
-                  style={{ width: "300px", textAlign: "center" }}
+                  style={{ width: '300px', textAlign: 'center' }}
                 >
                   <thead>
                     <tr>
-                      <td style={{ width: "30%" }}>排名</td>
-                      <td style={{ width: "30%" }}>发明人</td>
-                      <td style={{ width: "40%" }}>发明人部门</td>
+                      <td style={{ width: '30%' }}>排名</td>
+                      <td style={{ width: '30%' }}>发明人</td>
+                      <td style={{ width: '40%' }}>发明人部门</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -382,8 +382,8 @@ class Zhuanli extends Component {
                     </div>
                 </footer> */}
       </div>
-    );
+    )
   }
 }
 
-export default Zhuanli;
+export default Jiangli

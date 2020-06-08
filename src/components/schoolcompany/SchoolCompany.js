@@ -13,8 +13,8 @@ class SchoolCompany extends Component {
       updateTime: "",
       updater: "",
 
-      id: 0,
-      userId: 1,
+      id: 1,
+      userId: 0,
       cooperationName: "",
       unitName: "",
       unitAddress: "",
@@ -55,15 +55,13 @@ class SchoolCompany extends Component {
   }
   handleClick(id) {
     sessionStorage.setItem("CooperationCaseId", id);
-    this.props.link("xiaoqi");
+    this.props.link("zhuzuo");
   }
   handleDel(id) {
     console.log(id);
-    Axios.get(
-      `${url}/CooperationCase/delete?id=${id}&userId=${this.state.userId}`
-    )
+    Axios.get(`${url}/CooperationCase/delete?id=${id}`)
       .then((res) => {
-        console.log(this.state.userId);
+        console.log(res.data);
         if (res.data == 0) {
           alert("删除成功");
           this.getList();
@@ -78,7 +76,7 @@ class SchoolCompany extends Component {
   }
   addClick = () => {
     sessionStorage.setItem("CooperationCaseId", 0);
-    this.props.link("xiaoqi");
+    this.props.link("zhuzuo");
   };
   render() {
     return (
@@ -123,15 +121,7 @@ class SchoolCompany extends Component {
                     <span>{item.cooperationName}</span>
                   </td>
                   <td className="text">
-                    <span>
-                      {item.category == "现代学徒制"
-                        ? "现代学徒制"
-                        : item.category == "订单培养"
-                        ? "订单培养"
-                        : item.category == "共建实习基地"
-                        ? "共建实习基地"
-                        : "其他"}
-                    </span>
+                    <span>{item.category}</span>
                   </td>
                   <td className="text">
                     <span>{item.unitName}</span>

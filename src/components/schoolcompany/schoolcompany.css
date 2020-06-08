@@ -41,7 +41,7 @@
   text-align: center;
 }
 .social-top .tbody .abody td span {
-  width: 108px;
+  /* width: 108px; */
   min-height: 32px;
   line-height: 32px;
   display: inline-block;

@@ -1,6 +1,204 @@
-.ant-table-thead > tr > th{
-    text-align: center;
+.ant-table-thead > tr > th {
+  text-align: center;
 }
-.ant-table-tbody > tr > td{
-    text-align: center;
+.ant-table-tbody > tr > td {
+  text-align: center;
+}
+.socialServices.social-top {
+  width: 80%;
+}
+.socialServices table {
+  border-spacing: 0;
+  text-align: left;
+  width: 100%;
+}
+.socialServices tr {
+  border: 1px solid #000;
+}
+.socialServices td {
+  border: 1px solid #ccc;
+  line-height: 40px;
+  padding: 5px 5px;
+  /* font-size: 16px; */
+  color: #000;
+  text-align: center;
+}
+.socialServices input {
+  border: 0;
+  outline: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.socialServices .top td input {
+  width: 100%;
+  text-align: left;
+}
+.socialServices textarea {
+  outline: none;
+  border: 0;
+  width: 95%;
+  resize: none;
+  margin-top: 10px;
+  text-indent: 28px;
+  overflow: hidden;
+}
+.socialServices .top textarea {
+  height: 200px;
+}
+.socialServices .down textarea {
+  height: 80px;
+}
+.socialServices .down input {
+  width: 50px;
+  text-align: center;
+}.socialServices .down .title{
+  text-align: left;
+}
+.socialServices .qianzhang input{
+  width: 80px;
+}
+.socialServices .down .year {
+  width: 80px;
+}
+.commitment .commitment-word p {
+  text-indent: 32px;
+}
+.commitment .commitment-text {
+  margin-top: 100px;
+}
+.commitment .commitment-text,
+.commitment .commitment-time {
+  text-align: right;
+  margin-right: 50px;
+  width: 100%;
+}
+.commitment .commitment-text input {
+  border: 0;
+  outline: none;
+  width: 80px;
+}
+.commitment .commitment-time {
+  margin-top: 20px;
+}
+.commitment .commitment-time input {
+  text-align: center;
+  width: 50px;
+  border: 0;
+  outline: none;
+}
+.commitment .commitment-time .year {
+  width: 80px;
+}
+.socialServices .first {
+  border: 0;
+}
+.socialServices .first td {
+  width: 50px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.socialServices .reason td input {
+  width: 50px;
+}
+.socialServices .reason td .sign {
+  width: 100px;
+}
+.socialServices .reason td .year {
+  width: 80px;
+}
+.socialServices .reason-right {
+  margin-left: 200px;
+}
+.socialServices .qianzi .qianzi-left {
+  width: 100%;
+  text-align: left;
+}
+.socialServices .qianzi .qianzi-right {
+  margin-left: 50px;
+}
+.socialServices .qianzi td input {
+  width: 35px;
+  text-align: center;
+  padding: 0;
+}
+.jiexiangfengmian .fengmian-content {
+  width: 100%;
+  margin-top: 200px;
+}
+.jiexiangfengmian .fengmian-title {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: start;
+  line-height: 40px;
+}
+.jiexiangfengmian .fengmian-title > div {
+  width: 30%;
+  text-align-last: justify;
+  text-align: justify;
+  text-justify: distribute-all-lines;
+}
+.jiexiangfengmian .fengmian-title > input {
+  width: 70%;
+  border-bottom: 1px solid #000;
+}
+.fengmian-down {
+  width: 100%;
+  margin-top: 80px;
+}
+.fengmian-down .fengmian-down-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  color: rgba(0, 0, 0, 0.65);
+}
+.fengmian-down .fengmian-time {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.fengmian-down > div > input {
+  width: 40px;
+}
+.fengmian-down > div > .year {
+  width: 60px;
+}
+.jiexiangone .top textarea {
+  height: 400px;
+}
+.jiexiangfour .top .num input {
+  width: 50px;
+}
+.jiexiangfour .four-down .four-right {
+  margin-left: 300px;
+}
+.jiexiangfour .four-down td textarea {
+  height: 400px;
+}
+.jiexiangfive .five-left {
+  width: 100%;
+  text-align: left;
+}
+.jiexiangfive .five-right {
+  text-align: right;
+}
+.jiexiangfive .five-right .five-sign input {
+  width: 100px;
+  text-align: center;
+}
+.jiexiangfive .five-right .five-time input {
+  text-align: center;
+}
+.six-title {
+  display: block;
+}
+.jiexiangsix .top textarea {
+  height: 600px;
+}
+.jiexiangthree .top td .three-title,
+.jiexiangtwo .top td .two-title {
+  text-align: left;
+  width: 100%;
 }

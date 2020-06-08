@@ -46,10 +46,6 @@ class TextBook extends Component {
       updateTime: "",
       updater: "",
       data: [],
-      jiaocai: [],
-      pageNo: 10,
-      totalElements: 1,
-      pageSize: 1,
     };
   }
   componentDidMount() {
@@ -101,228 +97,111 @@ class TextBook extends Component {
     return (
       <div>
         <div>
-          <div className="form_item">
-            <Button>查询</Button>&nbsp;&nbsp;&nbsp;
-            <Button onClick={this.addClick.bind(this)}>新增案例</Button>
-            <div className="radio_container">
-              <form style={{ marginTop: "4px" }}>
-                <input
-                  type="radio"
-                  name="conversion"
-                  checked={this.state.writingOrTextbook ? true : false}
-                  onChange={(e) => this.setState({ writingOrTextbook: true })}
-                />
-                著作
-                <input
-                  type="radio"
-                  name="conversion"
-                  checked={!this.state.writingOrTextbook ? true : false}
-                  onChange={(e) => this.setState({ writingOrTextbook: false })}
-                />
-                教材
-              </form>
-            </div>
-          </div>
+          <Button>查询</Button>&nbsp;&nbsp;&nbsp;
+          <Button onClick={this.addClick.bind(this)}>新增案例</Button>
         </div>
-        {this.state.writingOrTextbook == true ? (
-          <table className="social-top">
-            <thead className="little">
-              <tr className="little-list">
-                <td className="text">序号</td>
-                <td className="text">著作名称</td>
-                <td className="text">出版单位</td>
-                <td className="text">出版时间</td>
-                <td className="text">著者</td>
-                <td className="text">教材类别</td>
-                <td className="text">上传附件</td>
-                <td className="text">是否为项目成果</td>
-                <td className="text">所属部门</td>
-                <td style={{ marginLeft: "40px" }}>操作</td>
+        <table className="social-top">
+          <thead className="little">
+            <tr className="little-list">
+              <td className="text">序号</td>
+              <td className="text">著作名称</td>
+              <td className="text">出版单位</td>
+              <td className="text">出版时间</td>
+              <td className="text">著者</td>
+              <td className="text">教材类别</td>
+              <td className="text">上传附件</td>
+              <td className="text">是否为项目成果</td>
+              <td className="text">所属部门</td>
+              <td style={{ marginLeft: "40px" }}>操作</td>
+            </tr>
+          </thead>
+          {this.state.data.length == 0 || this.state.data == [] ? (
+            <tbody className="little1">
+              <tr>
+                <td colSpan="14">
+                  <div className="aaa">暂无数据</div>
+                </td>
               </tr>
-            </thead>
-            {this.state.data.length == 0 || this.state.data == [] ? (
-              <tbody className="little1">
-                <tr>
-                  <td colSpan="14">
-                    <div className="aaa">暂无数据</div>
+            </tbody>
+          ) : (
+            this.state.data.map((item, index) => (
+              <tbody key={index} className="tbody">
+                <tr className="abody">
+                  <td className="text">
+                    <span>{index + 1}</span>
+                  </td>
+                  <td className="text">
+                    <span>{item.name}</span>
+                  </td>
+                  <td className="text">
+                    <span>{item.publisher}</span>
+                  </td>
+                  <td className="text">
+                    <span>
+                      {item.publicationTime != null &&
+                      item.publicationTime.length > 10
+                        ? item.publicationTime.substring(0, 10)
+                        : item.publicationTime}
+                    </span>
+                  </td>
+                  <td className="text">
+                    <span>{item.author}</span>
+                  </td>
+                  <td className="text">
+                    <span>
+                      {item.category == "教育部规划教材"
+                        ? "教育部规划教材"
+                        : item.category == "非规划教材"
+                        ? "非规划教材"
+                        : "校本"}
+                    </span>
+                  </td>
+                  <td className="text">
+                    <span>{item.upload}</span>
+                  </td>
+                  <td className="text">
+                    <span>{item.deliverables ? "是" : "否"}</span>
+                  </td>
+                  <td className="text">
+                    <span>{item.department}</span>
+                  </td>
+                  <td className="text">
+                    <span
+                      onClick={this.handleClick.bind(this, item.id)}
+                      style={{
+                        cursor: "pointer",
+                        color: "rgb(58,136,249)",
+                        marginLeft: "5px",
+                        width: "50px",
+                      }}
+                    >
+                      修改
+                    </span>
+                    <span
+                      onClick={this.handleDel.bind(this, item.id)}
+                      style={{
+                        cursor: "pointer",
+                        color: "red",
+                        marginLeft: "5px",
+                        width: "50px",
+                      }}
+                    >
+                      删除
+                    </span>
                   </td>
                 </tr>
               </tbody>
-            ) : (
-              this.state.data.map((item, index) => (
-                <tbody key={index} className="tbody">
-                  <tr className="abody">
-                    <td className="text">
-                      <span>{index + 1}</span>
-                    </td>
-                    <td className="text">
-                      <span>{item.name}</span>
-                    </td>
-                    <td className="text">
-                      <span>{item.publisher}</span>
-                    </td>
-                    <td className="text">
-                      <span>
-                        {item.publicationTime != null &&
-                        item.publicationTime.length > 10
-                          ? item.publicationTime.substring(0, 10)
-                          : item.publicationTime}
-                      </span>
-                    </td>
-                    <td className="text">
-                      <span>{item.author}</span>
-                    </td>
-                    <td className="text">
-                      <span>
-                        {item.category == "教育部规划教材"
-                          ? "教育部规划教材"
-                          : item.category == "非规划教材"
-                          ? "非规划教材"
-                          : "校本"}
-                      </span>
-                    </td>
-                    <td className="text">
-                      <span>{item.upload}</span>
-                    </td>
-                    <td className="text">
-                      <span>{item.deliverables ? "是" : "否"}</span>
-                    </td>
-                    <td className="text">
-                      <span>{item.department}</span>
-                    </td>
-                    <td className="text">
-                      <span
-                        onClick={this.handleClick.bind(this, item.id)}
-                        style={{
-                          cursor: "pointer",
-                          color: "rgb(58,136,249)",
-                          marginLeft: "5px",
-                          width: "50px",
-                        }}
-                      >
-                        修改
-                      </span>
-                      <span
-                        onClick={this.handleDel.bind(this, item.id)}
-                        style={{
-                          cursor: "pointer",
-                          color: "red",
-                          marginLeft: "5px",
-                          width: "50px",
-                        }}
-                      >
-                        删除
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              ))
-            )}
-          </table>
-        ) : (
-          <table className="social-top">
-            <thead className="little">
-              <tr className="little-list">
-                <td className="text">序号</td>
-                <td className="text">著作名称</td>
-                <td className="text">出版单位</td>
-                <td className="text">出版时间</td>
-                <td className="text">著者</td>
-                <td className="text">教材类别</td>
-                <td className="text">上传附件</td>
-                <td className="text">是否为项目成果</td>
-                <td className="text">所属部门</td>
-                <td style={{ marginLeft: "40px" }}>操作</td>
-              </tr>
-            </thead>
-            {this.state.jiaocai.length == 0 || this.state.jiaocai == [] ? (
-              <tbody className="little1">
-                <tr>
-                  <td colSpan="14">
-                    <div className="aaa">暂无数据</div>
-                  </td>
-                </tr>
-              </tbody>
-            ) : (
-              this.state.jiaocai.map((item, index) => (
-                <tbody key={index} className="tbody">
-                  <tr className="abody">
-                    <td className="text">
-                      <span>{index + 1}</span>
-                    </td>
-                    <td className="text">
-                      <span>{item.name}</span>
-                    </td>
-                    <td className="text">
-                      <span>{item.publisher}</span>
-                    </td>
-                    <td className="text">
-                      <span>
-                        {item.publicationTime != null &&
-                        item.publicationTime.length > 10
-                          ? item.publicationTime.substring(0, 10)
-                          : item.publicationTime}
-                      </span>
-                    </td>
-                    <td className="text">
-                      <span>{item.author}</span>
-                    </td>
-                    <td className="text">
-                      <span>
-                        {item.category == "教育部规划教材"
-                          ? "教育部规划教材"
-                          : item.category == "非规划教材"
-                          ? "非规划教材"
-                          : "校本"}
-                      </span>
-                    </td>
-                    <td className="text">
-                      <span>{item.upload}</span>
-                    </td>
-                    <td className="text">
-                      <span>{item.deliverables ? "是" : "否"}</span>
-                    </td>
-                    <td className="text">
-                      <span>{item.department}</span>
-                    </td>
-                    <td className="text">
-                      <span
-                        onClick={this.handleClick.bind(this, item.id)}
-                        style={{
-                          cursor: "pointer",
-                          color: "rgb(58,136,249)",
-                          marginLeft: "5px",
-                          width: "50px",
-                        }}
-                      >
-                        修改
-                      </span>
-                      <span
-                        onClick={this.handleDel.bind(this, item.id)}
-                        style={{
-                          cursor: "pointer",
-                          color: "red",
-                          marginLeft: "5px",
-                          width: "50px",
-                        }}
-                      >
-                        删除
-                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              ))
-            )}
-          </table>
-        )}
-        <div className="qiye-bottom">
-          <Pagination
-            current={this.state.pageNo}
-            total={this.state.totalElements}
-            pageSize={this.state.pageSize}
-            onChange={this.onChange.bind(this)}
-          />
-        </div>
+            ))
+          )}
+        </table>
+        {/* <div className="qiye-bottom">
+              <Pagination 
+                current={this.state.pageNo}
+                total={this.state.totalElements}
+                pageSize={this.state.pageSize}
+                onChange={this.onChange.bind(this)}
+              />
+            </div> */}
       </div>
     );
   }

@@ -1,54 +1,54 @@
-import React, { Component } from "react";
-import "./login.css";
-import { Input, Button, DatePicker, Alert, Select } from "antd";
-import locale from "antd/es/date-picker/locale/zh_CN";
-import moment from "moment";
-import "moment/locale/zh-cn";
-import Axios from "axios";
-let url = window.api;
+import React, { Component } from 'react'
+import './login.css'
+import { Input, Button, DatePicker, Alert, Select } from 'antd'
+import locale from 'antd/es/date-picker/locale/zh_CN'
+import moment from 'moment'
+import 'moment/locale/zh-cn'
+import Axios from 'axios'
+let url = window.api
 class Keti extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       categorynum: [],
       personnels: [],
       number1: 99,
       id: 0,
       userId: 0,
-      number: "",
-      name: "",
-      source: "河北省科技厅",
-      department: "材料工程系",
-      director: "",
-      directorDp: "",
+      number: '',
+      name: '',
+      source: '河北省科技厅',
+      department: '材料工程系',
+      director: '',
+      directorDp: '',
       approvalTime: new Date(),
-      allocateOutlay: "",
-      matchedOutlay: "",
+      allocateOutlay: '',
+      matchedOutlay: '',
       points: true,
       peopleNum: 0,
       plan: true,
-      level: "国家级",
-      direction: "横向",
-      participant: "",
+      level: '国家级',
+      direction: '横向',
+      participant: '',
       end: true,
       endTime: new Date(),
       conversion: true,
 
-      createTime: "",
-      creator: "",
+      createTime: '',
+      creator: '',
       deleted: true,
-      updateTime: "",
-      updater: "",
-    };
+      updateTime: '',
+      updater: '',
+    }
   }
   componentDidMount() {
-    let id = sessionStorage.getItem("SubjectRegId");
-    console.log(id);
+    let id = sessionStorage.getItem('SubjectRegId')
+    console.log(id)
 
     if (id && id > 0) {
       Axios.get(`${url}/SubjectReg/get?id=${id}`)
         .then((res) => {
-          console.log(res.data.personnels.length);
+          console.log(res.data.personnels.length)
           if (res.data && res.data.id) {
             this.setState({
               id: res.data.id,
@@ -63,7 +63,7 @@ class Keti extends Component {
                 res.data.approvalTime != null &&
                 res.data.approvalTime.length > 10
                   ? res.data.approvalTime.substring(0, 10)
-                  : "2020-01-01",
+                  : '2020-01-01',
               allocateOutlay: res.data.allocateOutlay,
               matchedOutlay: res.data.matchedOutlay,
               points: res.data.points,
@@ -74,14 +74,14 @@ class Keti extends Component {
               endTime:
                 res.data.endTime != null && res.data.endTime.length > 10
                   ? res.data.endTime.substring(0, 10)
-                  : "2020-01-01",
+                  : '2020-01-01',
               conversion: res.data.conversion,
               peopleNum: res.data.personnels.length,
               personnels: res.data.personnels,
-            });
+            })
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     }
   }
   submit = () => {
@@ -111,10 +111,10 @@ class Keti extends Component {
     // ) {
     //   alert("必填项不能为空！");
     // } else {
-    let personnels = [];
-    let choice = false;
-    let cou = document.querySelectorAll("input");
-    console.log(cou.length);
+    let personnels = []
+    let choice = false
+    let cou = document.querySelectorAll('input')
+    console.log(cou.length)
     for (let i = 0; i < cou.length; i++) {
       // if (cou[i].value == null || cou[i].value == "") {
       if (i > 15 && (i - 15) % 3 == 1) {
@@ -122,11 +122,11 @@ class Keti extends Component {
           num: cou[i].value, //排名
           name: cou[i + 1].value, //名字
           department: cou[i + 2].value, //部门
-        };
-        if (data.num != "" && data.name != "" && data.department != "") {
-          personnels.push(data);
         }
-        console.log(personnels);
+        if (data.num != '' && data.name != '' && data.department != '') {
+          personnels.push(data)
+        }
+        console.log(personnels)
         // }
       }
     }
@@ -150,40 +150,40 @@ class Keti extends Component {
       endTime: this.state.endTime,
       conversion: this.state.conversion,
       personnels: personnels,
-    };
-    console.log(data);
+    }
+    console.log(data)
     if (this.state.id > 0) {
       Axios.post(`${url}/SubjectReg/update`, data)
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data)
           if (res.data && res.data.id > 0) {
-            alert("修改成功！");
-            sessionStorage.setItem("SubjectRegId", 0);
-            this.props.link("Subject");
+            alert('修改成功！')
+            sessionStorage.setItem('SubjectRegId', 0)
+            this.props.link('Subject')
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     } else {
       Axios.post(`${url}/SubjectReg/add`, data)
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data)
           if (res.data && res.data.id && res.data.id > 0) {
-            alert("提交成功！");
-            this.props.link("Subject");
+            alert('提交成功！')
+            this.props.link('Subject')
           } else {
-            alert("提交失败");
+            alert('提交失败')
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     }
 
     // }
-  };
+  }
   cancel = () => {
-    this.props.link("Subject");
-  };
+    this.props.link('Subject')
+  }
   handleChange = (value) => {
-    let c = [];
+    let c = []
     if (value > this.state.personnels.length) {
       for (let i = 0; i < value - this.state.personnels.length; i++) {
         c.push(
@@ -198,18 +198,18 @@ class Keti extends Component {
               <input type="text" />
             </td>
           </tr>
-        );
+        )
       }
     }
     this.setState({
       categorynum: c,
-    });
-  };
+    })
+  }
   render() {
-    const dateFormat = "YYYY-MM-DD";
-    let sel = [];
+    const dateFormat = 'YYYY-MM-DD'
+    let sel = []
     for (let i = 1; i < this.state.number1; i++) {
-      sel.push(<Select.Option value={i}>{i}</Select.Option>);
+      sel.push(<Select.Option value={i}>{i}</Select.Option>)
     }
     return (
       <div>
@@ -294,7 +294,7 @@ class Keti extends Component {
                 <span>参研人人数:</span>
                 <Select
                   showSearch
-                  style={{ width: "100%", margin: "4px 12px 0 12px" }}
+                  style={{ width: '100%', margin: '4px 12px 0 12px' }}
                   placeholder="参研人人数"
                   optionFilterProp="children"
                   className="numoftype"
@@ -309,12 +309,12 @@ class Keti extends Component {
                 <span>立项时间:</span>
                 <DatePicker
                   locale={locale}
-                  style={{ width: "99%", marginLeft: 0, marginRight: "18px" }}
+                  style={{ width: '99%', marginLeft: 0, marginRight: '18px' }}
                   placeholder="请选择日期"
                   format="YYYY-MM-DD"
-                  value={moment(this.state.approvalTime, "YYYY-MM-DD")}
+                  value={moment(this.state.approvalTime, 'YYYY-MM-DD')}
                   onChange={(e) =>
-                    this.setState({ approvalTime: e.format("YYYY-MM-DD") })
+                    this.setState({ approvalTime: e.format('YYYY-MM-DD') })
                   }
                 />
               </div>
@@ -432,22 +432,22 @@ class Keti extends Component {
                 </div>
               </div>
               {this.state.end ? (
-                <div style={{ width: "100%", display: "flex" }}>
-                  {" "}
+                <div style={{ width: '100%', display: 'flex' }}>
+                  {' '}
                   <div className="form_item">
                     <span>结题时间:</span>
                     <DatePicker
                       format="YYYY-MM-DD"
                       // locale={locale}
                       style={{
-                        width: "99%",
+                        width: '99%',
                         marginLeft: 0,
-                        marginRight: "18px",
+                        marginRight: '18px',
                       }}
                       placeholder="请选择日期"
                       value={moment(this.state.endTime)}
                       onChange={(e) => {
-                        this.setState({ endTime: e.format("YYYY-MM-DD") });
+                        this.setState({ endTime: e.format('YYYY-MM-DD') })
                       }}
                     />
                   </div>
@@ -475,28 +475,28 @@ class Keti extends Component {
                   </div>
                 </div>
               ) : (
-                ""
+                ''
               )}
 
               <div className="btn_box">
                 <div className="btn_container">
                   <Button
                     style={{
-                      width: "60px",
-                      height: "30px",
-                      backgroundColor: "#1890ff",
-                      color: "#fff",
+                      width: '60px',
+                      height: '30px',
+                      backgroundColor: '#1890ff',
+                      color: '#fff',
                     }}
                     onClick={this.submit.bind(this)}
                   >
-                    {this.state.id == 0 ? "提交" : "修改"}
+                    {this.state.id == 0 ? '提交' : '修改'}
                   </Button>
                   <Button
                     style={{
-                      width: "60px",
-                      height: "30px",
-                      color: "#fff",
-                      backgroundColor: "#000",
+                      width: '60px',
+                      height: '30px',
+                      color: '#fff',
+                      backgroundColor: '#000',
                     }}
                     onClick={this.cancel.bind(this)}
                   >
@@ -505,17 +505,17 @@ class Keti extends Component {
                 </div>
               </div>
 
-              <div className="xia" style={{ margin: "10px auto" }}>
+              <div className="xia" style={{ margin: '10px auto' }}>
                 <table
                   border="1"
                   className="tbody"
-                  style={{ width: "300px", textAlign: "center" }}
+                  style={{ width: '300px', textAlign: 'center' }}
                 >
                   <thead>
                     <tr>
-                      <td style={{ width: "30%" }}>排名</td>
-                      <td style={{ width: "30%" }}>参研人</td>
-                      <td style={{ width: "40%" }}>参研人部门</td>
+                      <td style={{ width: '30%' }}>排名</td>
+                      <td style={{ width: '30%' }}>参研人</td>
+                      <td style={{ width: '40%' }}>参研人部门</td>
                     </tr>
                   </thead>
                   <tbody>
@@ -558,8 +558,8 @@ class Keti extends Component {
                     </div>
                 </footer> */}
       </div>
-    );
+    )
   }
 }
 
-export default Keti;
+export default Keti

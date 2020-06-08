@@ -59,7 +59,7 @@ class Zhuanli extends Component {
         .then((res) => {
           console.log(res.data);
           if (res.data && res.data.id) {
-            if (res.data.writingOrTextbook != true) {
+            if (res.data.writingOrTextbook == true) {
               this.setState({
                 id: res.data.id,
                 name: res.data.name,

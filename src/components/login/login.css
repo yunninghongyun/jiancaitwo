@@ -175,6 +175,9 @@ h2 {
   justify-content: center;
   align-items: center;
   font-size: 1.5rem;
+  font-weight: bolder;
+  margin-top: 40px;
+  margin-bottom: 40px;
   /* font-weight: 600; */
 }
 .form_content {
@@ -245,7 +248,7 @@ textarea {
 .radio_container {
   border: none;
 }
-.form_item input[type="radio"] {
+.form_item input[type='radio'] {
   width: 15px;
   height: 15px;
 }
@@ -289,6 +292,7 @@ textarea:focus {
   width: 100%;
   display: flex;
   justify-content: center;
+  margin-top: 40px;
 }
 .btn_container {
   width: 400px;
